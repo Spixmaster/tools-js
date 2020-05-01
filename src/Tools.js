@@ -3,9 +3,12 @@ const Constants = require("./constants/Constants");
 const fs = require("fs");
 
 /**
- * @mainpage telegram-user-adder
+ * @mainpage tools-js
  * @author Matheus Gabriel Werny de Lima
  * @copyright /
+ * @version
+ * 0.0.2 (01.05.2020)
+ * - Generated documentation.
  * @version
  * 0.0.1 (01.05.2020)
  * - Writing the source code.
