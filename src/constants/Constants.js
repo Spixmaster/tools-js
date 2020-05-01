@@ -7,14 +7,14 @@ const path = require("path");
  */
 class Constants
 {
-    //member functions
+    //Member functions
     /**
      * @brief Returns the version.
      * @return {string} The version.
      */
     static version()
     {
-        return "0.0.3";
+        return "0.0.1";
     }
 
     /**
@@ -23,28 +23,65 @@ class Constants
      */
     static release()
     {
-        return "22.04.2020";
+        return "01.05.2020";
     }
 
-        //Files
+    /**
+     * @brief Returns the maximum amount of temporary error logs that are saved.
+     * @return {int} The number.
+     */
+    static max_tmp_err_logs()
+    {
+        return 10;
+    }
+
+    //Folders
     /**
      * @brief Returns the folder name for the files.
      * @return {string} The folder name.
      */
     static folder()
     {
-        //.. as we are currently in "root/src/constants/".
-        return path.join(__dirname, "..", "..", "files/");
+        //We are currently in "root/tools-js/src/constants/" but we want to reach root.
+        return path.join(__dirname, "..", "..", "..", "files/");
     }
 
     /**
-     * @brief Returns the suitable cookie file name.
-     * @param[in] phone_number {string} The phone number is used to identify the corresponding Telegram account.
+     * @brief Returns the folder for the error logs.
+     * @return {string} The folder name.
+     */
+    static folder_error_logs()
+    {
+        return this.folder() + "error-logs/";
+    }
+
+    /**
+     * @brief Returns the folder for the temporary error logs.
+     * @return {string} The folder name.
+     */
+    static folder_error_logs_tmp()
+    {
+        return this.folder() + "error-logs-tmp/";
+    }
+
+    //Files
+    /**
+     * @brief Returns the name to the file to which an error message is written.
      * @return {string} The file name.
      */
-    static file_cookies(phone_number)
+    static file_err_log()
     {
-        return `${Constants.folder()}cookies-${phone_number}.dat`;
+        return this.folder_error_logs() + Math.floor(Date.now() / 1000).toString() + ".txt";
+    }
+
+    /**
+     * @brief Returns the name to the file to which an error message is written.
+     * @details The temporary error log will be deleted after a while.
+     * @return {string} The file name.
+     */
+    static file_err_log_tmp()
+    {
+        return this.folder_error_logs_tmp() + Math.floor(Date.now() / 1000).toString() + ".txt";
     }
 };
 
