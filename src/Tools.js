@@ -8,7 +8,7 @@ const fs = require("fs");
  * @copyright /
  * @version
  * 0.0.2 (01.05.2020)
- * - Generated documentation.
+ * - Source code update.
  * @version
  * 0.0.1 (01.05.2020)
  * - Writing the source code.
