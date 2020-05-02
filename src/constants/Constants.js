@@ -23,7 +23,7 @@ class Constants
      */
     static release()
     {
-        return "01.05.2020";
+        return "02.05.2020";
     }
 
     /**
