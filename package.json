@@ -1,7 +1,7 @@
 {
   "name": "tools-js",
-  "version": "0.0.2",
-  "description": "A Node.js library which contains all functions I use regularly. ",
+  "version": "0.0.3",
+  "description": "A Node.js library which contains all functions I use regularly.",
   "main": "/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
