@@ -14,7 +14,7 @@ class Constants
      */
     static version()
     {
-        return "0.0.3";
+        return "0.0.4";
     }
 
     /**
@@ -23,7 +23,7 @@ class Constants
      */
     static release()
     {
-        return "14.05.2020";
+        return "15.05.2020";
     }
 
     /**
@@ -43,7 +43,7 @@ class Constants
     static folder()
     {
         //We are currently in "root/tools-js/src/constants/" but we want to reach root.
-        return path.join(__dirname, "..", "..", "..", "files/");
+        return path.join(__dirname, "../../../files/");
     }
 
     /**
@@ -71,7 +71,7 @@ class Constants
      */
     static file_err_log()
     {
-        return this.folder_error_logs() + Math.floor(Date.now() / 1000).toString() + ".txt";
+        return this.folder_error_logs() + Date.now().toString() + ".txt";
     }
 
     /**
@@ -81,7 +81,7 @@ class Constants
      */
     static file_err_log_tmp()
     {
-        return this.folder_error_logs_tmp() + Math.floor(Date.now() / 1000).toString() + ".txt";
+        return this.folder_error_logs_tmp() + Date.now().toString() + ".txt";
     }
 };
 
