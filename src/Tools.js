@@ -7,6 +7,9 @@ const fs = require("fs");
  * @author Matheus Gabriel Werny de Lima
  * @copyright /
  * @version
+ * 0.0.4 (15.05.2020)
+ * - Minor updates.
+ * @version
  * 0.0.3 (14.05.2020)
  * - Small code revision.
  * @version
