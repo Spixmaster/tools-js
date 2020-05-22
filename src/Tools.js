@@ -6,6 +6,9 @@ const fs = require("fs");
  * @author Matheus Gabriel Werny de Lima
  * @copyright /
  * @version
+ * 0.0.7 (22.05.2020)
+ * - A npm file was added.
+ * @version
  * 0.0.6 (15.05.2020)
  * - Version fix.
  * @version

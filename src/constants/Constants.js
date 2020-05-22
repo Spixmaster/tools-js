@@ -14,7 +14,7 @@ class Constants
      */
     static version()
     {
-        return "0.0.6";
+        return "0.0.7";
     }
 
     /**
@@ -23,7 +23,7 @@ class Constants
      */
     static release()
     {
-        return "15.05.2020";
+        return "22.05.2020";
     }
 
     /**
