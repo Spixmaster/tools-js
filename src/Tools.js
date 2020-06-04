@@ -6,6 +6,9 @@ const fs = require("fs");
  * @author Matheus Gabriel Werny de Lima
  * @copyright /
  * @version
+ * 1.0.2 (04.06.2020)
+ * - Code revision.
+ * @version
  * 1.0.1 (04.06.2020)
  * - Contributing updated.
  * @version
@@ -80,7 +83,7 @@ class Tools
         }
 
         //Perhaps, delete old error log.
-        let files = fs.readdirSync(Constants.folder_error_logs_tmp());
+        const files = fs.readdirSync(Constants.folder_error_logs_tmp());
 
         if(files.length >= Constants.max_tmp_err_logs())
         {
