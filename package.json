@@ -1,6 +1,6 @@
 {
   "name": "tools-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node.js library which contains all functions I use regularly.",
   "main": "/",
   "scripts": {
