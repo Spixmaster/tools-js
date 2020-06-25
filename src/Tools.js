@@ -4,7 +4,10 @@ const fs = require("fs");
 /**
  * @mainpage tools-js
  * @author Matheus Gabriel Werny de Lima
- * @copyright /
+ * @copyright Apache-2.0 License
+ * @version
+ * 1.0.5 (25.06.2020)
+ * - Doxygen fix.
  * @version
  * 1.0.4 (25.06.2020)
  * - License changed.
