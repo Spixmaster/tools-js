@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Spixmaster/tools-js.git"
   },
   "author": "Matheus Gabriel Werny de Lima",
-  "license": "GPL-2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Spixmaster/tools-js/issues"
   },
