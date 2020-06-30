@@ -7,6 +7,7 @@ const fs = require("fs");
  * @copyright Apache-2.0 License
  * @version
  * 1.0.6 (30.06.2020)
+ * - NPM settings updated.
  * @version
  * 1.0.5 (25.06.2020)
  * - Doxygen fix.

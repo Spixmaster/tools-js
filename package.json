@@ -1,6 +1,6 @@
 {
   "name": "tools-js",
-  "version": "1.0.6",
+  "version": "1.0.5",
   "description": "A Node.js library which contains all functions I use regularly.",
   "main": "/",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Spixmaster/tools-js.git"
   },
   "author": "Matheus Gabriel Werny de Lima",
-  "license": "Apache-2.0",
+  "license": "SEE LICENSE IN LICENSE",
   "bugs": {
     "url": "https://github.com/Spixmaster/tools-js/issues"
   },
