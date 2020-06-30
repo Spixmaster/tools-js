@@ -6,6 +6,8 @@ const fs = require("fs");
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
  * @version
+ * 1.0.6 (30.06.2020)
+ * @version
  * 1.0.5 (25.06.2020)
  * - Doxygen fix.
  * @version
