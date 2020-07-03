@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/Spixmaster/tools-js/issues"
   },
-  "homepage": "https://github.com/Spixmaster/tools-js#readme"
+  "homepage": "https://github.com/Spixmaster/tools-js#readme",
+  "dependencies": {}
 }

@@ -1,10 +1,14 @@
 const Constants = require("./constants/Constants");
 const fs = require("fs");
+const Messages = require("./constants/Messages");
 
 /**
  * @mainpage tools-js
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
+ * @version
+ * 1.1.0 (03.07.2020)
+ * - Added some functions.
  * @version
  * 1.0.6 (30.06.2020)
  * - NPM settings updated.
@@ -106,6 +110,278 @@ class Tools
         //Log the error.
         fs.writeFileSync(Constants.file_err_log_tmp(), err);
     }
+
+    /**
+     * @brief The function gets the line of a given file.
+     * @details The first line is line 1.
+     * @details Example: The function may get line 5 of a file.
+     * @param[in] file {string} The file path to the file whose content we want.
+     * @param[in] ln_num {int} The number needs to be greater than 0. It states the line we want.
+     * @return {string} The file line with new line char included at the end is returned.
+     * @retval "" The file or the file line does not exist.
+     */
+    static get_file_ln(file, ln_num)
+    {
+        if(fs.existsSync(file))
+        {
+            if(ln_num >= 1)
+            {
+                let count = 1;
+                const file_cont = fs.readFileSync(file, "utf8");
+                const lines = file_cont.split("\n");
+
+                for(let j = 0; j < lines.length; ++j)
+                {
+                    if(count === ln_num)
+                    {
+                        return lines[j];
+                    }
+
+                    ++count;
+                }
+
+                return "";
+            }
+            else
+            {
+                Tools.write_err_log(Messages.enter_pos_num_to_read_in_file(file));
+				return "";
+            }
+        }
+        else
+        {
+            Tools.write_err_log(Messages.file_non_existent(file));
+			return "";
+        }
+    }
+
+    /**
+     * @brief It is counted the number of lines a file has.
+     * @details Empty lines do not count.
+     * @param[in] file {string} The path to file.
+     * @return {int} The amount of written lines in a file.
+     * @retval -1 The file does not exist.
+     */
+    static get_amnt_file_lns(file)
+    {
+        if(fs.existsSync(file))
+        {
+            let count = 0;
+            const file_cont = fs.readFileSync(file, "utf8");
+            const lines = file_cont.split("\n");
+
+            for(let j = 0; j < lines.length; ++j)
+            {
+                if(lines[j] !== "")
+                {
+                    ++count;
+                }
+            }
+
+            return count;
+        }
+        else
+        {
+            Tools.write_err_log(Messages.file_non_existent(file));
+            return -1;
+        }
+    }
+
+    /**
+     * @brief All words in the passed string are listed down in a arrayz while one element represents a word.
+     * @details It can handle new lines and several spaces as it neglects them and only gets the pure words.
+     * @param[in] str {string} The string from which we want to get the arguments.
+     * @return {array of string} The array where each element represents one argument.
+     */
+    static get_args(str)
+    {
+		let args = [];
+		let word = "";
+
+		for(let j = 0; j < str.length; ++j)
+		{
+			//Deal with the last char of the last word. Check that we do not add whitespace.
+			if(j == (str.length - 1) && str.charAt(j) != ' ')
+			{
+				word += str.charAt(j);
+				args.push(word);
+				word = "";
+				break;	//Otherwise, the next condition would be true.
+			}
+
+			//Add the chars.
+			if(str.charAt(j) != ' ' && str.charAt(j) != '\n')
+				word += str.charAt(j);
+
+			/*
+			 * Detect words.
+			 * && word !== "" is used as a condition so that several spaces do not add empty elements in the array.
+			 */
+			if((str.charAt(j) == ' ' || str.charAt(j) == '\n') && word !== "")
+			{
+				args.push(word);
+				word = "";
+			}
+		}
+
+		return args;
+    }
+
+    /**
+     * @brief This function gets keys out of files.
+     * @details Key-value pairs are saved like: key0 key1 key2: value0 value1 value2
+     * @param[in] ln {string} The file line whose key we want.
+     * @return {string} The key of the line without ending colon.
+     */
+    static get_file_ln_key(ln)
+    {
+		if(ln !== "")
+		{
+			let result = "";
+			let args = Tools.get_args(ln);
+
+			for(let j = 0; j < args.length; ++j)
+			{
+				result += args[j];
+
+                if(j != args.length - 1)
+                {
+                    result += " ";
+                }
+
+				//This condition defines when the key is over.
+				if(args[j].endsWith(":"))
+				{
+					//At this moment, we have: "key0 key1 key2: " or "key0 key1 key2:"
+                    while(result.endsWith(":") || result.endsWith(": "))
+                    {
+                        result = result.substring(0, result.length - 1);
+                    }
+
+					return result;
+				}
+			}
+
+			return "";
+		}
+		else
+		{
+			Tools.write_err_log(Messages.given_str_empty());
+			return "";
+		}
+    }
+
+    /**
+     * @brief This function gets values out of settings files.
+     * @details Key-value pairs are saved like: key0 key1 key2: value0 value1 value2
+     * @param[in] ln {string} The file line whose value we want.
+     * @return {string} The value of the line.
+     */
+    static get_file_ln_val(ln)
+	{
+		if(ln !== "")
+		{
+            let result = "";
+			let args = Tools.get_args(ln);
+			let add = false; //The variable indicates when chars need to be added to the output string.
+
+			for(let j = 0; j < args.length; ++j)
+			{
+				if(add == true)
+				{
+					result += args[j];
+
+					if(j != args.length - 1)
+						result += " ";
+				}
+
+				//This condition defines when the chars are added to the result string.
+                if(args[j].endsWith(":"))
+                {
+                    add = true;
+                }
+			}
+
+			return result;
+		}
+		else
+		{
+			Tools.write_err_log(Messages.given_str_empty());
+			return "";
+		}
+    }
+    
+    /**
+     * @brief It gets the first line which contains the passed key.
+     * @details The whole string needs to be contained in the file line and not just a fraction.
+     * @note How values are saved: key0 key1 key2: val0 val1
+     * @param[in] file {string} Path to file whose content we want.
+     * @param[in] key {string} The key of the file line we want.
+     * @return {string} The file line which contains the whole key. No new line character at the end.
+     * @retval "" There is no such key in the file.
+     */
+    static get_file_ln_w_key(file, key)
+    {
+        if(fs.existsSync(file))
+        {
+            const file_cont = fs.readFileSync(file, "utf8");
+            const lines = file_cont.split("\n");
+
+            for(let j = 0; j < lines.length; ++j)
+            {
+                if(lines[j] !== "")
+                {
+                    if(Tools.get_file_ln_key(lines[j]) == key)
+                    {
+                        return lines[j];
+                    }
+                }
+            }
+
+            return "";
+        }
+        else
+        {
+            Tools.write_err_log(Messages.file_non_existent(file));
+			return "";
+        }
+    }
+
+    /**
+     * @brief It gets the first line which contains the passed value.
+     * @details The whole string needs to be contained in the value and not just a fraction.
+     * @note How values are saved: key0 key1 key2: val0 val1
+     * @param[in] file {string} Path to file whose content we want.
+     * @param[in] val {string} The value of the file line we want.
+     * @return {string} The file line which contains the whole value. No new line character at the end.
+     * @retval "" There is no such value in the file.
+     */
+    static get_file_ln_w_val(file, val)
+	{
+        if(fs.existsSync(file))
+        {
+            const file_cont = fs.readFileSync(file, "utf8");
+            const lines = file_cont.split("\n");
+
+            for(let j = 0; j < lines.length; ++j)
+            {
+                if(lines[j] !== "")
+                {
+                    if(Tools.get_file_ln_val(lines[j]) == val)
+                    {
+                        return lines[j];
+                    }
+                }
+            }
+
+            return "";
+        }
+        else
+        {
+            Tools.write_err_log(Messages.file_non_existent(file));
+			return "";
+        }
+	}
 }
 
 module.exports = Tools;
