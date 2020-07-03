@@ -7,6 +7,9 @@ const Messages = require("./constants/Messages");
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
  * @version
+ * 1.1.1 (03.07.2020)
+ * - Variable update.
+ * @version
  * 1.1.0 (03.07.2020)
  * - Added some functions.
  * @version
