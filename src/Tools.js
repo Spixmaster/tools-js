@@ -8,6 +8,9 @@ const {execSync} = require("child_process");
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
  * @version
+ * 1.1.3 (04.07.2020)
+ * - Added a function.
+ * @version
  * 1.1.2 (04.07.2020)
  * - Added function exec().
  * @version
@@ -398,8 +401,46 @@ class Tools
     static exec(cmd)
     {
         let output = execSync(cmd).toString();
+        //Remove the new line character at the end.
         output = output.substring(0, output.length - 1);
         return output;
+    }
+
+    /**
+     * @brief The functions gets the content of the stated file except one line which is skipped.
+     * @param[in] file {string} Path to file whose content we want.
+     * @param[in] srch {string} String whose line shall not be included.
+     * @return {string} Everything from the file except that one line is returned as a string. Additionally, a new line is included at the end which is important as when appending text I assume that it goes into a new line.
+     * @retval "" An empty line is returned if the file does not exist.
+     */
+    static get_file_cont_wo_srch_ln(file, srch)
+    {
+        if(fs.existsSync(file))
+        {
+            let result = "";
+            const file_cont = fs.readFileSync(file, "utf8");
+            const lines = file_cont.split("\n");
+
+            for(let j = 0; j < lines.length; ++j)
+            {
+                if(lines[j] !== srch)
+                {
+                    result += lines[j];
+
+                    if(j != lines.length - 1)
+                    {
+                        result += "\n";
+                    }
+                }
+            }
+
+            return result;
+        }
+        else
+        {
+            Tools.write_err_log(Messages.file_non_existent(file));
+            return "";
+        }
     }
 }
 
