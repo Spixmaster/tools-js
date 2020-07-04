@@ -8,6 +8,9 @@ const {execSync} = require("child_process");
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
  * @version
+ * 1.1.4 (04.07.2020)
+ * - Bug fix.
+ * @version
  * 1.1.3 (04.07.2020)
  * - Added a function.
  * @version
@@ -426,11 +429,7 @@ class Tools
                 if(lines[j] !== srch)
                 {
                     result += lines[j];
-
-                    if(j != lines.length - 1)
-                    {
-                        result += "\n";
-                    }
+                    result += "\n";
                 }
             }
 
