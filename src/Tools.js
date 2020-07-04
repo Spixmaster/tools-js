@@ -1,11 +1,15 @@
 const Constants = require("./constants/Constants");
 const fs = require("fs");
 const Messages = require("./constants/Messages");
+const {execSync} = require("child_process");
 
 /**
  * @mainpage tools-js
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
+ * @version
+ * 1.1.2 (04.07.2020)
+ * - Added function exec().
  * @version
  * 1.1.1 (03.07.2020)
  * - Variable update.
@@ -384,7 +388,19 @@ class Tools
             Tools.write_err_log(Messages.file_non_existent(file));
 			return "";
         }
-	}
+    }
+    
+    /**
+     * @brief Calls a command and returns the stdout.
+     * @param[in] cmd {string} The called command.
+     * @return {string} The output made to stdout.
+     */
+    static exec(cmd)
+    {
+        let output = execSync(cmd).toString();
+        output = output.substring(0, output.length - 1);
+        return output;
+    }
 }
 
 module.exports = Tools;
