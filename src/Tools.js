@@ -8,6 +8,9 @@ const {execSync} = require("child_process");
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
  * @version
+ * 1.1.5 (06.07.2020)
+ * - Removed unnecessary require().
+ * @version
  * 1.1.4 (04.07.2020)
  * - Bug fix.
  * @version

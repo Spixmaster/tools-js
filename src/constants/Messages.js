@@ -1,5 +1,3 @@
-const Tools = require("../Tools");
-
 /**
  * @class Messages
  * @brief A container for all messages.
