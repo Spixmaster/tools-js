@@ -4,7 +4,7 @@ A Node.js library which contains all functions I use regularly.
 ## Installation
 ### Dependencies
 ```sh
-cd path/to/folder/tools-js/
+cd to/this/project/
 npm install
 ```
 
