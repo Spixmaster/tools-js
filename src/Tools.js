@@ -1,12 +1,15 @@
-const Constants = require("./constants/Constants");
+const constants = require("./constants/Constants");
 const fs = require("fs");
-const Messages = require("./constants/Messages");
+const messages = require("./constants/Messages");
 const {execSync} = require("child_process");
 
 /**
  * @mainpage tools-js
  * @author Matheus Gabriel Werny de Lima
  * @copyright Apache-2.0 License
+ * @version
+ * 1.1.6 (09.08.2020)
+ * - Variables renamed.
  * @version
  * 1.1.5 (06.07.2020)
  * - Removed unnecessary require().
@@ -83,17 +86,17 @@ class Tools
     static write_err_log(err)
     {
         //Create the folders if necessary.
-        if(!fs.existsSync(Constants.folder()))
+        if(!fs.existsSync(constants.folder()))
         {
-            fs.mkdirSync(Constants.folder());
+            fs.mkdirSync(constants.folder());
         }
 
-        if(!fs.existsSync(Constants.folder_error_logs()))
+        if(!fs.existsSync(constants.folder_error_logs()))
         {
-            fs.mkdirSync(Constants.folder_error_logs());
+            fs.mkdirSync(constants.folder_error_logs());
         }
 
-        fs.writeFileSync(Constants.file_err_log(), err);
+        fs.writeFileSync(constants.file_err_log(), err);
     }
 
     /**
@@ -104,27 +107,27 @@ class Tools
     static write_err_log_tmp(err)
     {
         //Create the folders if necessary.
-        if(!fs.existsSync(Constants.folder()))
+        if(!fs.existsSync(constants.folder()))
         {
-            fs.mkdirSync(Constants.folder());
+            fs.mkdirSync(constants.folder());
         }
 
-        if(!fs.existsSync(Constants.folder_error_logs_tmp()))
+        if(!fs.existsSync(constants.folder_error_logs_tmp()))
         {
-            fs.mkdirSync(Constants.folder_error_logs_tmp());
+            fs.mkdirSync(constants.folder_error_logs_tmp());
         }
 
         //Perhaps, delete old error log.
-        const files = fs.readdirSync(Constants.folder_error_logs_tmp());
+        const files = fs.readdirSync(constants.folder_error_logs_tmp());
 
-        if(files.length >= Constants.max_tmp_err_logs())
+        if(files.length >= constants.max_tmp_err_logs())
         {
             //Element 0 is the oldest file as the files are sorted ascendingly.
-            fs.unlinkSync(Constants.folder_error_logs_tmp() + files[0])
+            fs.unlinkSync(constants.folder_error_logs_tmp() + files[0])
         }
 
         //Log the error.
-        fs.writeFileSync(Constants.file_err_log_tmp(), err);
+        fs.writeFileSync(constants.file_err_log_tmp(), err);
     }
 
     /**
@@ -160,13 +163,13 @@ class Tools
             }
             else
             {
-                Tools.write_err_log(Messages.enter_pos_num_to_read_in_file(file));
+                Tools.write_err_log(messages.enter_pos_num_to_read_in_file(file));
 				return "";
             }
         }
         else
         {
-            Tools.write_err_log(Messages.file_non_existent(file));
+            Tools.write_err_log(messages.file_non_existent(file));
 			return "";
         }
     }
@@ -198,7 +201,7 @@ class Tools
         }
         else
         {
-            Tools.write_err_log(Messages.file_non_existent(file));
+            Tools.write_err_log(messages.file_non_existent(file));
             return -1;
         }
     }
@@ -282,7 +285,7 @@ class Tools
 		}
 		else
 		{
-			Tools.write_err_log(Messages.given_str_empty());
+			Tools.write_err_log(messages.given_str_empty());
 			return "";
 		}
     }
@@ -322,7 +325,7 @@ class Tools
 		}
 		else
 		{
-			Tools.write_err_log(Messages.given_str_empty());
+			Tools.write_err_log(messages.given_str_empty());
 			return "";
 		}
     }
@@ -358,7 +361,7 @@ class Tools
         }
         else
         {
-            Tools.write_err_log(Messages.file_non_existent(file));
+            Tools.write_err_log(messages.file_non_existent(file));
 			return "";
         }
     }
@@ -394,7 +397,7 @@ class Tools
         }
         else
         {
-            Tools.write_err_log(Messages.file_non_existent(file));
+            Tools.write_err_log(messages.file_non_existent(file));
 			return "";
         }
     }
@@ -440,7 +443,7 @@ class Tools
         }
         else
         {
-            Tools.write_err_log(Messages.file_non_existent(file));
+            Tools.write_err_log(messages.file_non_existent(file));
             return "";
         }
     }
