@@ -17,7 +17,7 @@ class Messages
     
     /**
      * @brief Returns a message that asks for a positive line number as there are no negative ones.
-     * @param[in] file The file name which is included in the error message.
+     * @param[in] file {string} The file name which is included in the error message.
      * @return {string} The message.
      */
     static enter_pos_num_to_read_in_file(file)
